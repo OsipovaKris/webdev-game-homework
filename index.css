@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'StratosSkyeng';
-    src: url(./stratosskyengweb-regular.woff) format('woff');
+    src: url(./fonts/stratosskyengweb-regular.woff) format('woff');
 }
 
 .game-container {
@@ -45,7 +45,15 @@
     margin-bottom: 67px;
 }
 
-.game-level {
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked+label {
+    box-shadow: 1px 1px 5px #0080C1;
+}
+
+label {
     width: 98px;
     height: 98px;
     background-color: #ffffff;
@@ -61,8 +69,8 @@
     font-weight: 400;
 }
 
-.active {
-    box-shadow: 1px 1px 5px #0080C1;
+label:hover {
+    box-shadow: 1px 1px 5px #0081c152;
 }
 
 .game-info-btn {

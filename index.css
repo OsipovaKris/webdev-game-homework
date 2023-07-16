@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'StratosSkyeng';
+    src: url(./fonts/stratosskyengweb-regular.woff) format('woff');
+}
+
+.game-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #004980;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.game-info-box {
+    width: 480px;
+    height: 459px;
+    background-color: #C2F5FF;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-info-text {
+    width: 208px;
+    margin-top: 52px;
+    color: #004980;
+    font-family: StratosSkyeng;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+}
+
+.game-level-box {
+    display: flex;
+    gap: 26px;
+    margin-top: 48px;
+    margin-bottom: 67px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked+label {
+    box-shadow: 1px 1px 5px #0080C1;
+}
+
+label {
+    width: 98px;
+    height: 98px;
+    background-color: #ffffff;
+    color: #0080C1;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: StratosSkyeng;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+label:hover {
+    box-shadow: 1px 1px 5px #0081c152;
+}
+
+.game-info-btn {
+    width: 246px;
+    height: 50px;
+    background-color: #7AC100;
+    border: none;
+    border-radius: 12px;
+    font-family: StratosSkyeng;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+}

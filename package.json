@@ -1,0 +1,27 @@
+{
+  "name": "webdev-game-homework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write ./index/",
+    "lint:js": "eslint ./index/**/*.js",
+    "lint:css": "stylelint ./index/**/*.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/OsipovaKris/webdev-game-homework)"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.0",
+    "stylelint": "^15.10.2",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-prettier": "^4.0.0"
+  }
+}

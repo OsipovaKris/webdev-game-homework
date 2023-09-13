@@ -127,7 +127,6 @@ input[type="radio"]:checked + label {
 .game-card {
   height: 133px;
   width: 95px;
-  background-image: url("../components/card.svg");
 }
 
 .hidden {

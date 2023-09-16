@@ -1,1 +1,32 @@
-(()=>{const e=document.querySelector(".game-box"),t=document.querySelector(".game-card-box"),n=document.querySelector(".game-popup-box"),c=document.getElementById("game-popup-btn"),l=document.querySelectorAll("input"),o=document.getElementById("restart-btn"),a={};function d(){const e=(n=3*a.level,35,[...new Array(n)].map((()=>Math.round(35*Math.random()))));var n;const c=e.concat(e).sort((()=>Math.random()-.5));let l=[];for(let e=0;e<6*a.level;e++)l.push(`<div data-id=${c[e]} class='game-card' style='background-image: url("../img/${c[e]}.svg");'></div>`);t.innerHTML=l.join(""),setTimeout(r,2e3)}function r(){const e=document.querySelectorAll(".game-card");for(let t=0;t<e.length;t++)e[t].style.backgroundImage='url("../img/card.svg")';u()}function u(){const e=document.querySelectorAll(".game-card");let t=[];for(let n=0;n<e.length;n++)e[n].addEventListener("click",(function(){t.length<2&&(t.push(e[n].dataset.id),e[n].style.backgroundImage=`url("../img/${e[n].dataset.id}.svg")`,2===t.length&&t[0]===t[1]&&(a.card.push(e[n].dataset.id),u()),2===t.length&&t[0]!==t[1]&&setTimeout(i,1e3,0))}));a.card.length===3*a.level&&setTimeout(i,1e3,1)}function i(t){1===t&&(e.innerHTML="Вы выиграли"),0===t&&(e.innerHTML="Вы проиграли :(")}c.addEventListener("click",(function(){for(let t=0;t<l.length;t++)l[t].checked&&(a.level=l[t].value,n.classList.add("hidden"),e.classList.remove("hidden"),d())})),o.addEventListener("click",(function(){d()})),a.card=[]})();
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./index/index.js":
+/*!************************!*\
+  !*** ./index/index.js ***!
+  \************************/
+/***/ (() => {
+
+eval("const gameBox = document.querySelector(\".game-box\");\nconst cardBox = document.querySelector(\".game-card-box\");\nconst popupBox = document.querySelector(\".game-popup-box\");\nconst gamePopupBtn = document.getElementById(\"game-popup-btn\");\nconst gameLevel = document.querySelectorAll(\"input\");\nconst restartBtn = document.getElementById(\"restart-btn\");\n\nconst state = {};\n\ngamePopupBtn.addEventListener(\"click\", function () {\n  for (let i = 0; i < gameLevel.length; i++) {\n    if (gameLevel[i].checked) {\n      state[\"level\"] = gameLevel[i].value;\n\n      popupBox.classList.add(\"hidden\");\n\n      gameBox.classList.remove(\"hidden\");\n\n      getGame();\n    }\n  }\n});\n\nfunction getGame() {\n  const generateCardArr = (length, max) =>\n    [...new Array(length)].map(() => Math.round(Math.random() * max));\n\n  const cardArr = generateCardArr(state.level * 3, 35);\n\n  const allCardArr = cardArr.concat(cardArr).sort(() => Math.random() - 0.5);\n\n  let cardBoxArr = [];\n\n  for (let i = 0; i < state.level * 6; i++) {\n    cardBoxArr.push(`<img src='../components/${allCardArr[i]}.svg'>`);\n  }\n\n  cardBox.innerHTML = cardBoxArr.join(\"\");\n}\n\nrestartBtn.addEventListener(\"click\", function () {\n  getGame();\n});\n\n\n//# sourceURL=webpack://webdev-game-homework/./index/index.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./index/index.js"]();
+/******/ 	
+/******/ })()
+;

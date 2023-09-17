@@ -8,10 +8,10 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   entry: "./index/index.js",
-  mode: process.env.NODE_ENV === "production" ? "production" : "development",
+  mode: "production",
   module: {
     rules: [
-      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
+      { test: /\.css$/i, use: [MiniCssExtractPlugin.loader, "css-loader"] },
       { test: /\.(png|svg|jpg|jpeg|gif)$/i, type: "asset/resource" },
       { test: /\.(woff|woff2|eot|ttf|otf)$/i, type: "asset/resource" },
     ],

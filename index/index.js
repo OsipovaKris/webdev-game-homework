@@ -1,3 +1,5 @@
+import "./index.css";
+
 const gameBox = document.querySelector(".game-box");
 const cardBox = document.querySelector(".game-card-box");
 const popupBox = document.querySelector(".game-popup-box");
@@ -33,7 +35,7 @@ function renderCard() {
 
   for (let i = 0; i < state.level * 6; i++) {
     cardBoxArr.push(
-      `<div data-id=${allCardArr[i]} class='game-card' style='background-image: url("../img/${allCardArr[i]}.svg");'></div>`,
+      `<div data-id=${allCardArr[i]} class='game-card' style='background-image: url("../static/img/${allCardArr[i]}.svg");'></div>`,
     );
   }
 
@@ -50,7 +52,7 @@ function changeCard() {
   const cardImg = document.querySelectorAll(".game-card");
 
   for (let i = 0; i < cardImg.length; i++) {
-    cardImg[i].style.backgroundImage = 'url("../img/card.svg")';
+    cardImg[i].style.backgroundImage = 'url("../static/img/card.svg")';
   }
 
   setGame();
@@ -69,7 +71,7 @@ function setGame() {
         arr.push(cardImg[i].dataset.id);
         cardImg[
           i
-        ].style.backgroundImage = `url("../img/${cardImg[i].dataset.id}.svg")`;
+        ].style.backgroundImage = `url("../static/img/${cardImg[i].dataset.id}.svg")`;
 
         if (arr.length === 2 && arr[0] === arr[1]) {
           state.card.push(cardImg[i].dataset.id);

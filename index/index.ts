@@ -1,10 +1,11 @@
 import "./index.css";
 
-const app = document.querySelector(".game-container");
-let state = {}; //состояние игры
+const app: HTMLElement | null = document.querySelector(".game-container");
+type ttt = { level: number; card: string[]; time: string };
+let state: ttt = { level: 0, card: [], time: "" }; //состояние игры
 
 const renderGamePopupPage = () => {
-  app.innerHTML = `<div class="popup-box" id="game-popup">
+  (app as HTMLElement).innerHTML = `<div class="popup-box" id="game-popup">
 <p
 class="game-popup-text">Выбери сложность</p>
 <div class="game-level-box">
@@ -18,13 +19,14 @@ class="game-popup-text">Выбери сложность</p>
 <button class="game-btn" id="game-popup-btn">Старт</button>
 </div>`;
 
-  const gamePopupBtn = document.getElementById("game-popup-btn");
+  const gamePopupBtn: HTMLElement | null =
+    document.getElementById("game-popup-btn");
   const gameLevel = document.querySelectorAll("input");
 
-  gamePopupBtn.addEventListener("click", function () {
+  (gamePopupBtn as HTMLElement).addEventListener("click", function () {
     for (let i = 0; i < gameLevel.length; i++) {
       if (gameLevel[i].checked) {
-        state["level"] = gameLevel[i].value;
+        state.level = Number(gameLevel[i].value);
 
         renderGamePage();
       }
@@ -35,7 +37,7 @@ class="game-popup-text">Выбери сложность</p>
 renderGamePopupPage();
 
 function renderGamePage() {
-  app.innerHTML = `<div class="game-box">
+  (app as HTMLElement).innerHTML = `<div class="game-box">
 <div class="game-info">
 <div class="game-info-timer">
 <div class="game-time-meta">
@@ -49,9 +51,9 @@ function renderGamePage() {
 <div class="game-card-box"></div>
 </div>`;
 
-  const cardBox = document.querySelector(".game-card-box");
+  const cardBox: HTMLElement | null = document.querySelector(".game-card-box");
 
-  const generateCardArr = (length, max) =>
+  const generateCardArr = (length: number, max: number) =>
     [...new Array(length)].map(() => Math.round(Math.random() * max));
 
   const cardArr = generateCardArr(state.level * 3, 35);
@@ -66,41 +68,43 @@ function renderGamePage() {
     );
   }
 
-  cardBox.innerHTML = cardBoxArr.join("");
+  (cardBox as HTMLElement).innerHTML = cardBoxArr.join("");
 
-  state["card"] = [];
+  state.card = [];
 
   setTimeout(changeCard, 5000);
 
-  const restartBtn = document.getElementById("restart-btn");
+  const restartBtn: HTMLElement | null = document.getElementById("restart-btn");
 
-  restartBtn.addEventListener("click", function () {
+  (restartBtn as HTMLElement).addEventListener("click", function () {
     renderGamePage();
   });
 }
 
-let interval = 0;
-let seconds = 0;
-let minutes = 0;
+let interval: number = 0;
+let seconds: number = 0;
+let minutes: number = 0;
 
 function changeCard() {
-  const cardImg = document.querySelectorAll(".game-card");
-  let timer = document.querySelector(".game-time");
+  const cardImg: NodeListOf<Element> = document.querySelectorAll(".game-card");
+
+  let timer: HTMLElement | null = document.querySelector(".game-time");
 
   clearInterval(interval);
 
   seconds = 0;
 
   for (let i = 0; i < cardImg.length; i++) {
-    cardImg[i].style.backgroundImage = 'url("../static/img/card.svg")';
+    (cardImg[i] as HTMLElement).style.backgroundImage =
+      'url("../static/img/card.svg")';
   }
 
   interval = setInterval(updateTime, 1000, timer);
 
-  setGame(timer);
+  setGame(timer as HTMLElement);
 }
 
-function updateTime(timer) {
+function updateTime(timer: HTMLElement) {
   seconds++;
   if (seconds === 60) {
     minutes++;
@@ -112,28 +116,26 @@ function updateTime(timer) {
     .padStart(2, "0")}`;
 }
 
-function setGame(timer) {
-  const cardImg = document.querySelectorAll(".game-card");
+function setGame(timer: HTMLElement) {
+  const cardImgs: NodeListOf<Element> = document.querySelectorAll(".game-card");
 
-  let arr = [];
+  let arr: string[] = [];
 
-  for (let i = 0; i < cardImg.length; i++) {
-    cardImg[i].addEventListener("click", function () {
+  for (const cardImg of cardImgs as any) {
+    (cardImg as HTMLElement).addEventListener("click", function () {
       if (arr.length < 2) {
-        arr.push(cardImg[i].dataset.id);
-        cardImg[
-          i
-        ].style.backgroundImage = `url("../static/img/${cardImg[i].dataset.id}.svg")`;
+        arr.push(cardImg.dataset.id);
+        cardImg.style.backgroundImage = `url("../static/img/${cardImg.dataset.id}.svg")`;
 
         if (arr.length === 2 && arr[0] === arr[1]) {
-          state.card.push(cardImg[i].dataset.id);
+          state.card.push(String(cardImg.dataset.id));
 
           setGame(timer);
         }
         if (arr.length === 2 && arr[0] !== arr[1]) {
           clearInterval(interval);
 
-          state["timer"] = timer.textContent;
+          state.time = String(timer.textContent);
 
           setTimeout(getResult, 1000, 0);
         }
@@ -144,19 +146,17 @@ function setGame(timer) {
   if (state.card.length === state.level * 3) {
     clearInterval(interval);
 
-    state["timer"] = timer.textContent;
+    state.time = String(timer.textContent);
 
     setTimeout(getResult, 1000, 1);
   }
 }
 
-function getResult(result) {
-  const gameBox = document.querySelector(".game-box");
-  gameBox.classList.add("non-pointer");
+function getResult(result: number) {
+  const gameBox: HTMLElement | null = document.querySelector(".game-box");
+  (gameBox as HTMLElement).classList.add("non-pointer");
 
-  app.innerHTML =
-    app.innerHTML +
-    `<div class="popup-box" id="result-popup" 
+  (app as HTMLElement).innerHTML += `<div class="popup-box" id="result-popup" 
       style="top: calc(50% - 460px / 2);
       left: calc(50% - 480px / 2);
       z-index: 1;">
@@ -166,13 +166,14 @@ ${
     : '<img class="icon" src="../static/img/res0.svg" alt=""/><p class="game-popup-text" id="text-result">Вы проиграли!</p>'
 }
 <p class="text">Затраченное время:</p>
-<p class="game-time time-text">${state.timer}</p>
+<p class="game-time time-text">${state.time}</p>
 <button class="game-btn" id="restart-game-btn">Играть снова</button>`;
 
-  const restartGameBtn = document.getElementById("restart-game-btn");
+  const restartGameBtn: HTMLElement | null =
+    document.getElementById("restart-game-btn");
 
-  restartGameBtn.addEventListener("click", function () {
-    state = {};
+  (restartGameBtn as HTMLElement).addEventListener("click", function () {
+    state = { level: 0, card: [], time: "" };
 
     renderGamePopupPage();
   });

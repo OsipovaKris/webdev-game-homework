@@ -37,8 +37,6 @@ class="game-popup-text">Выбери сложность</p>
 
 renderGamePopupPage();
 
-export let cardBoxArr: string[] = [];
-
 function renderGamePage() {
   (app as HTMLElement).innerHTML = `<div class="game-box">
 <div class="game-info">
@@ -54,7 +52,7 @@ function renderGamePage() {
 <div class="game-card-box"></div>
 </div>`;
 
-  cardBoxArr = [];
+  let cardBoxArr: string[] = [];
 
   generateCard(cardBoxArr);
 

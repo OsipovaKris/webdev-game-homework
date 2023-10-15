@@ -1,4 +1,4 @@
-import { state, cardBoxArr } from "../index/index";
+import { state } from "../index/index";
 
 export function generateCard(cardBoxArr: string[]) {
   const generateCardArr = (length: number, max: number) =>

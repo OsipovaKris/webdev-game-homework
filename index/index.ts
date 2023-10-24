@@ -1,8 +1,9 @@
 import "./index.css";
+import { generateCard } from "../components/generate-card";
 
 const app: HTMLElement | null = document.querySelector(".game-container");
 type ttt = { level: number; card: string[]; time: string };
-let state: ttt = { level: 0, card: [], time: "" }; //состояние игры
+export let state: ttt = { level: 0, card: [], time: "" }; //состояние игры
 
 const renderGamePopupPage = () => {
   (app as HTMLElement).innerHTML = `<div class="popup-box" id="game-popup">
@@ -51,22 +52,11 @@ function renderGamePage() {
 <div class="game-card-box"></div>
 </div>`;
 
+  let cardBoxArr: string[] = [];
+
+  generateCard(cardBoxArr);
+
   const cardBox: HTMLElement | null = document.querySelector(".game-card-box");
-
-  const generateCardArr = (length: number, max: number) =>
-    [...new Array(length)].map(() => Math.round(Math.random() * max));
-
-  const cardArr = generateCardArr(state.level * 3, 35);
-
-  const allCardArr = cardArr.concat(cardArr).sort(() => Math.random() - 0.5);
-
-  let cardBoxArr = [];
-
-  for (let i = 0; i < state.level * 6; i++) {
-    cardBoxArr.push(
-      `<div data-id=${allCardArr[i]} class='game-card' style='background-image: url("../static/img/${allCardArr[i]}.svg");'></div>`,
-    );
-  }
 
   (cardBox as HTMLElement).innerHTML = cardBoxArr.join("");
 
